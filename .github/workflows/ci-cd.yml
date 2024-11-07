@@ -42,29 +42,37 @@ jobs:
           name: myapp
           path: .
 
-      - name: Install Trivy
-        run: |
-          docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy:0.57.0 image --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed myapp:${{ github.sha }}
-
-      # - name: Install Trivy
-      #   run: |
-      #     sudo apt-get install wget gnupg
-      #     wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-      #     echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
-      #     sudo apt-get update
-      #     sudo apt-get install trivy
-
       - name: Load Docker image
         run: |
           gunzip -c myapp.tar.gz | docker load
 
-      - name: Perform Vulnerability Scan
+      - name: Download trivy image
         run: |
-          for i in {1..3}; do # Retry up to 3 times
-            trivy image --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed myapp:${{ github.sha }} && break || sleep 30
+          IMAGE="aquasec/trivy:0.57.0"
+          MAX_RETRIES=5
+          RETRY_DELAY=5
+
+          for (( i=0; i<MAX_RETRIES; i++ )); do
+            echo "Attempt $((i + 1)) to pull the image $IMAGE"
+            if docker pull $IMAGE; then
+              echo "Successfully pulled the image $IMAGE"
+              break
+            else
+              echo "Failed to pull the image. Retrying in $RETRY_DELAY seconds..."
+              sleep $RETRY_DELAY
+            fi
           done
+
+          if [ $i -eq $MAX_RETRIES ]; then
+            echo "Failed to pull the image after $MAX_RETRIES attempts."
+            exit 1
+          fi
+
+      - name: Run Trivy
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:0.57.0 image --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed myapp:${{ github.sha }}
 
   performance-test:
     name: Performance Test
