@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build and Deploy
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -62,10 +62,10 @@ jobs:
         run: |
           docker run --name app_container -d -p 8080:8080 myapp:${{ github.sha }}
 
-      - name: Check files
-        run: |
-          docker ps -a
-          docker logs app_container
+      # - name: Check files
+      #   run: |
+      #     docker ps -a
+      #     docker logs app_container
 
       - name: Wait for Application to be Ready
         run: |
@@ -80,8 +80,8 @@ jobs:
           echo "Application did not start in time!"
           exit 1
 
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Run performance tests
         uses: ./.github/actions/performance-test
