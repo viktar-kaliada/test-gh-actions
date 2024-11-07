@@ -2,24 +2,26 @@
 <jmeterTestPlan version="1.2" properties="5.5" jmeter="5.5">
     <hashTree>
         <testPlan>
-            <stringProp name="TestPlan.comments">Performance Test Plan</stringProp>
+            <stringProp name="TestPlan.comments">Simple JMeter Test Plan for Flask App</stringProp>
             <elementProp name="TestPlan.user_defined_variables" elementType="Arguments"/>
             <boolProp name="TestPlan.serialize_thread_groups">false</boolProp>
-            <stringProp name="TestPlan.name">Test Plan Name</stringProp>
+            <stringProp name="TestPlan.name">Flask App Performance Test</stringProp>
             <boolProp name="TestPlan.tearDownOnShutdown">true</boolProp>
             <hashTree/>
         </testPlan>
         <hashTree>
             <threadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
-                <stringProp name="ThreadGroup.num_threads">1</stringProp>
-                <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+                <stringProp name="ThreadGroup.num_threads">10</stringProp> <!-- Number of concurrent users -->
+                <stringProp name="ThreadGroup.ramp_time">5</stringProp> <!-- Ramp-up time in seconds -->
+                <longProp name="ThreadGroup.duration"/> <!-- Duration for test run -->
+                <longProp name="ThreadGroup.delay"/>
                 <hashTree>
                     <httpSampler guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
-                        <stringProp name="HTTPSampler.domain">localhost</stringProp>
-                        <stringProp name="HTTPSampler.port">8080</stringProp>
-                        <stringProp name="HTTPSampler.protocol">http</stringProp>
-                        <stringProp name="HTTPSampler.path">/</stringProp>
-                        <stringProp name="HTTPSampler.method">GET</stringProp>
+                        <stringProp name="HTTPSampler.domain">localhost</stringProp> <!-- Domain -->
+                        <stringProp name="HTTPSampler.port">8080</stringProp> <!-- Port -->
+                        <stringProp name="HTTPSampler.protocol">http</stringProp> <!-- Protocol -->
+                        <stringProp name="HTTPSampler.path">/</stringProp> <!-- Path -->
+                        <stringProp name="HTTPSampler.method">GET</stringProp> <!-- HTTP Method -->
                     </httpSampler>
                     <hashTree/>
                 </hashTree>
