@@ -41,8 +41,10 @@ jobs:
 
       - name: Install Trivy
         run: |
-          sudo apt-get update
-          sudo apt-get install -y trivy
+          TRIVY_VERSION=0.57.0 # Set the current Trivy version
+          wget -O trivy.tar.gz https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_$(uname -s)_(uname -m).tar.gz
+          tar zxvf trivy.tar.gz
+          sudo mv trivy /usr/local/bin/
 
       - name: Load Docker image
         run: |
