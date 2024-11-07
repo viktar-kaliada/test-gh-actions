@@ -1,13 +1,6 @@
 name: 'Performance Test'
 description: 'Run performance tests for the Dockerized application'
-inputs:
-  docker_image:
-    description: 'The Docker image to test against'
-    required: true
-    default: 'myapp:latest'
 
 runs:
   using: 'docker'
   image: 'app.dockerfile'
-  args:
-    - ${{ inputs.docker_image }}

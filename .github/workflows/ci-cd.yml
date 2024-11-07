@@ -80,19 +80,17 @@ jobs:
           echo "Application did not start in time!"
           exit 1
 
-      - name: Make a CURL request  
-        run: |
-          curl -X GET "http://localhost:8080"   
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+      - name: Run performance tests
+        uses: ./.github/actions/performance-test
+
+      # - name: Make a CURL request  
+      #   run: |
+      #     curl -X GET "http://localhost:8080"   
 
       - name: Clean Up
         run: |
           docker stop app_container
           docker rm app_container
-
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-
-  #     - name: Run performance tests
-  #       uses: ./.github/actions/performance-test
-  #       with:
-  #         docker_image: myapp:${{ github.sha }}
