@@ -54,10 +54,6 @@ jobs:
           name: myapp
           path: .
 
-      - name: Check files
-        run: |
-          ls -la -R
-
       - name: Load Docker image
         run: |
           gunzip -c myapp.tar.gz | docker load
@@ -66,16 +62,23 @@ jobs:
         run: |
           docker run -d --name app_container -p 8080:8080 myapp:${{ github.sha }}
 
-      - name: Wait for Application to be ready
+      - name: Check files
+        run: |
+          docker ps -a
+          docker logs app_container
+
+      - name: Wait for Application to be Ready
         run: |
           for i in {1..30}; do
-            if curl -s http://localhost:8080/; then
-              echo "App is ready!"
-              break
+            if curl -s "http://localhost:8080" > /dev/null; then
+              echo "Application is ready!"
+              exit 0
             fi
-            echo "Waiting for app to be ready..."
-            sleep 5
+            echo "Waiting for application to be ready..."
+            sleep 2
           done
+          echo "Application did not start in time!"
+          exit 1
 
       - name: Make a CURL request  
         run: |
