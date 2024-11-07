@@ -3,17 +3,13 @@
     <hashTree>
         <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
             <stringProp name="TestPlan.comments"></stringProp>
-            <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="UserDefinedVariablesGui" testclass="Arguments" testname="User Defined Variables" enabled="true"/>
-            <boolProp name="TestPlan.keepAlive">true</boolProp>
-            <boolProp name="TestPlan.threadGroups">true</boolProp>
+            <boolProp name="TestPlan.enableTeaTimer">true</boolProp>
         </TestPlan>
         <hashTree/>
         <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
-            <stringProp name="ThreadGroup.num_threads">10</stringProp>
-            <stringProp name="ThreadGroup.ramp_time">5</stringProp>
-            <stringProp name="ThreadGroup.schedule">false</stringProp>
-            <elementProp name="ThreadGroup.duration" elementType="TestBeanGUI" />
-            <stringProp name="ThreadGroup.delay">0</stringProp>
+            <stringProp name="ThreadGroup.num_threads">1</stringProp>
+            <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+            <stringProp name="ThreadGroup loops">1</stringProp>
         </ThreadGroup>
         <hashTree>
             <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
@@ -22,14 +18,8 @@
                 <stringProp name="HTTPSampler.protocol">http</stringProp>
                 <stringProp name="HTTPSampler.path">/</stringProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
-                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             </HTTPSampler>
             <hashTree/>
-            <ResultCollector guiclass="SummaryReportGui" testclass="ResultCollector" testname="Summary Report" enabled="true">
-                <stringProp name="filename"></stringProp>
-                <boolProp name="ResultCollector.error_logging">true</boolProp>
-            </ResultCollector>
         </hashTree>
     </hashTree>
 </jmeterTestPlan>
