@@ -1,16 +1,34 @@
-<testPlan>
-    <!-- Test Plan Configuration -->
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.3" jmeter="5.5">
     <hashTree>
-        <threadGroup>
-            <!-- Thread Group Configuration -->
-            <hashTree>
-                <httpSampler>
-                    <stringProp name="HTTPSampler.domain">localhost</stringProp>
-                    <stringProp name="HTTPSampler.port">8080</stringProp>
-                    <stringProp name="HTTPSampler.path">/</stringProp>
-                    <stringProp name="HTTPSampler.method">GET</stringProp>
-                </httpSampler>
-            </hashTree>
-        </threadGroup>
+        <testPlan>
+            <stringProp name="TestPlan.comments">Your Test Plan Comment</stringProp>
+            <elementProp name="TestPlan.user_defined_variables" elementType="Arguments"/>
+            <boolProp name="TestPlan.serialize_thread_groups">false</boolProp>
+            <stringProp name="TestPlan.name">Test Plan Name</stringProp>
+            <stringProp name="TestPlan.task_timeout">0</stringProp>
+            <stringProp name="TestPlan.tearDownOnShutdown">true</stringProp>
+            <stringProp name="TestPlan.resultsFile">results.jtl</stringProp>
+            <hashTree/>
+        </hashTree>
+        <hashTree>
+            <threadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+                <stringProp name="ThreadGroup.num_threads">1</stringProp>
+                <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+                <longProp name="ThreadGroup.duration"/>
+                <longProp name="ThreadGroup.delay"/>
+                <hashTree>
+                    <httpSampler guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+                        <stringProp name="HTTPSampler.domain">localhost</stringProp>
+                        <stringProp name="HTTPSampler.port">8080</stringProp>
+                        <stringProp name="HTTPSampler.protocol">http</stringProp>
+                        <stringProp name="HTTPSampler.path">/</stringProp>
+                        <stringProp name="HTTPSampler.method">GET</stringProp>
+                    </httpSampler>
+                    <hashTree/>
+                </hashTree>
+            </threadGroup>
+            <hashTree/>
+        </hashTree>
     </hashTree>
-</testPlan>
+</jmeterTestPlan>
