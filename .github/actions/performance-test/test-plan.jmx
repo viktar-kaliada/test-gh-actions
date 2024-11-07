@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.4" jmeter="5.4">
     <hashTree>
-        <testPlan>
+        <TestPlan>
             <stringProp name="TestPlan.comments">Simple JMeter Test Plan for Flask App</stringProp>
             <elementProp name="TestPlan.user_defined_variables" elementType="Arguments"/>
             <boolProp name="TestPlan.serialize_thread_groups">false</boolProp>
             <stringProp name="TestPlan.name">Flask App Performance Test</stringProp>
             <boolProp name="TestPlan.tearDownOnShutdown">true</boolProp>
             <hashTree/>
-        </testPlan>
+        </TestPlan>
         <hashTree>
             <threadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
                 <stringProp name="ThreadGroup.num_threads">10</stringProp> <!-- Number of concurrent users -->
@@ -18,7 +18,7 @@
                 <hashTree>
                     <httpSampler guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
                         <stringProp name="HTTPSampler.domain">localhost</stringProp> <!-- Domain -->
-                        <stringProp name="HTTPSampler.port">8000</stringProp> <!-- Port -->
+                        <stringProp name="HTTPSampler.port">8080</stringProp> <!-- Port -->
                         <stringProp name="HTTPSampler.protocol">http</stringProp> <!-- Protocol -->
                         <stringProp name="HTTPSampler.path">/</stringProp> <!-- Path -->
                         <stringProp name="HTTPSampler.method">GET</stringProp> <!-- HTTP Method -->
