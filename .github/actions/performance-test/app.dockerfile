@@ -1,5 +1,5 @@
 # .github/actions/performance-test/app.dockerfile
-FROM justb4/jmeter:5.4
+FROM justb4/jmeter:5.5
 
 # Copy the JMeter test plan into the container
 COPY test-plan.jmx /test-plan.jmx
