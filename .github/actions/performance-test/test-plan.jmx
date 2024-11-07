@@ -2,22 +2,17 @@
 <jmeterTestPlan version="1.2" properties="5.5" jmeter="5.5">
     <hashTree>
         <testPlan>
-            <stringProp name="TestPlan.comments">Your Test Plan Comment</stringProp>
+            <stringProp name="TestPlan.comments">Performance Test Plan</stringProp>
             <elementProp name="TestPlan.user_defined_variables" elementType="Arguments"/>
             <boolProp name="TestPlan.serialize_thread_groups">false</boolProp>
             <stringProp name="TestPlan.name">Test Plan Name</stringProp>
-            <stringProp name="TestPlan.task_timeout">0</stringProp>
             <boolProp name="TestPlan.tearDownOnShutdown">true</boolProp>
-            <stringProp name="TestPlan.resultsFile">results.jtl</stringProp>
             <hashTree/>
         </testPlan>
-        
         <hashTree>
             <threadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
                 <stringProp name="ThreadGroup.num_threads">1</stringProp>
                 <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-                <longProp name="ThreadGroup.duration"/>
-                <longProp name="ThreadGroup.delay"/>
                 <hashTree>
                     <httpSampler guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
                         <stringProp name="HTTPSampler.domain">localhost</stringProp>
