@@ -29,12 +29,20 @@ jobs:
       # - name: Push Docker image
       #   run: docker push myapp:${{ github.sha }}
 
-  # performance-test:
-  #   name: Performance Test
-  #   runs-on: ubuntu-latest
-  #   needs: build
+  performance-test:
+    name: Performance Test
+    runs-on: ${{needs.build.outputs.RUNNER}}
+    needs: build
 
-  #   steps:
+    steps:
+      - name: Run Application Container
+        run: |
+          docker run -d --name app_container -p 8080:8080 myapp:${{ github.sha }}
+
+      - name: Make a CURL request  
+        run: |
+          curl -X GET "http://localhost:8080"   
+
   #     - name: Checkout code
   #       uses: actions/checkout@v2
 

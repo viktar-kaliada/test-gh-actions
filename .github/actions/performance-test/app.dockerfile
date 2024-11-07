@@ -1,12 +1,17 @@
-# Use a base image that includes JMeter
-FROM justinribeiro/jmeter:latest
+# .github/actions/performance-test/app.dockerfile
+FROM justb4/jmeter:5.4.1
 
-# Copy JMeter test plan into the image
-COPY ./test-plan.jmx /test-plan.jmx
+# Copy the JMeter test plan into the container
+COPY test-plan.jmx /test-plan.jmx
 
-# Copy the entrypoint script into the image
+# Copy the entrypoint script into the container
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh  # Make it executable
+
+# Create a directory for results
+RUN mkdir -p /results
+
+# Make the entrypoint script executable
+RUN chmod +x /entrypoint.sh
 
 # Set the entrypoint to the script
 ENTRYPOINT ["/entrypoint.sh"]

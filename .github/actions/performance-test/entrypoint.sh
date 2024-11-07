@@ -1,4 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-# Execute JMeter with the provided arguments
-jmeter -n -t /test-plan.jmx -l /results/results.jtl -e -o /results/report
+# entrypoint.sh
+set -e  # Stop the script if any command fails
+
+echo "Starting JMeter performance tests..."
+
+# Execute JMeter with the given parameters
+jmeter -n -t /test-plan.jmx -Japp.url=http://localhost:8080 -l /results/results.jtl
+
+echo "Performance tests completed."
