@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.3" jmeter="5.5">
+<jmeterTestPlan version="1.2" properties="5.5" jmeter="5.5">
     <hashTree>
         <testPlan>
             <stringProp name="TestPlan.comments">Your Test Plan Comment</stringProp>
@@ -7,10 +7,11 @@
             <boolProp name="TestPlan.serialize_thread_groups">false</boolProp>
             <stringProp name="TestPlan.name">Test Plan Name</stringProp>
             <stringProp name="TestPlan.task_timeout">0</stringProp>
-            <stringProp name="TestPlan.tearDownOnShutdown">true</stringProp>
+            <boolProp name="TestPlan.tearDownOnShutdown">true</boolProp>
             <stringProp name="TestPlan.resultsFile">results.jtl</stringProp>
             <hashTree/>
-        </hashTree>
+        </testPlan>
+        
         <hashTree>
             <threadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
                 <stringProp name="ThreadGroup.num_threads">1</stringProp>
