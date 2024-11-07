@@ -60,7 +60,7 @@ jobs:
 
       - name: Run Application Container
         run: |
-          docker run --name app_container -p 8080:8080 myapp:${{ github.sha }}
+          docker run --name app_container -d -p 8080:8080 myapp:${{ github.sha }}
 
       - name: Check files
         run: |
