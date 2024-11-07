@@ -60,13 +60,12 @@ jobs:
 
       - name: Run Application Container
         run: |
-          docker run -d --name app_container -p 8080:8080 myapp:${{ github.sha }}
+          docker run --name app_container -p 8080:8080 myapp:${{ github.sha }}
 
       - name: Check files
         run: |
           docker ps -a
           docker logs app_container
-          docker inspect app_container
 
       - name: Wait for Application to be Ready
         run: |
