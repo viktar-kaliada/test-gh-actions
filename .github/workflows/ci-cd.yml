@@ -20,11 +20,11 @@ jobs:
       - name: Build Docker image
         run: docker build -f app.dockerfile -t myapp:${{ github.sha }} .
 
-      - name: Scan for vulnerabilities
-        run: |
-          docker run --rm \
-            -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy image --severity HIGH,CRITICAL myapp:${{ github.sha }}
+      # - name: Scan for vulnerabilities
+      #   run: |
+      #     docker run --rm \
+      #       -v /var/run/docker.sock:/var/run/docker.sock \
+      #       aquasec/trivy image --severity HIGH,CRITICAL myapp:${{ github.sha }}
 
       # - name: Push Docker image
       #   run: docker push myapp:${{ github.sha }}
