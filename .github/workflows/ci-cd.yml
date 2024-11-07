@@ -91,6 +91,7 @@ jobs:
       #     curl -X GET "http://localhost:8080"   
 
       - name: Clean Up
+        if: always()
         run: |
           docker stop app_container
           docker rm app_container

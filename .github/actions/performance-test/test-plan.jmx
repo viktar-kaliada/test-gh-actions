@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="5.5" jmeter="5.5">
+<jmeterTestPlan version="1.2" properties="5.4" jmeter="5.4">
     <hashTree>
         <testPlan>
             <stringProp name="TestPlan.comments">Simple JMeter Test Plan for Flask App</stringProp>
@@ -18,7 +18,7 @@
                 <hashTree>
                     <httpSampler guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
                         <stringProp name="HTTPSampler.domain">localhost</stringProp> <!-- Domain -->
-                        <stringProp name="HTTPSampler.port">8080</stringProp> <!-- Port -->
+                        <stringProp name="HTTPSampler.port">8000</stringProp> <!-- Port -->
                         <stringProp name="HTTPSampler.protocol">http</stringProp> <!-- Protocol -->
                         <stringProp name="HTTPSampler.path">/</stringProp> <!-- Path -->
                         <stringProp name="HTTPSampler.method">GET</stringProp> <!-- HTTP Method -->
