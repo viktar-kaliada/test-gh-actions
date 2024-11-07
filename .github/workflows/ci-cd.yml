@@ -66,6 +66,17 @@ jobs:
         run: |
           docker run -d --name app_container -p 8080:8080 myapp:${{ github.sha }}
 
+      - name: Wait for Application to be ready
+        run: |
+          for i in {1..30}; do
+            if curl -s http://localhost:5000/; then
+              echo "App is ready!"
+              break
+            fi
+            echo "Waiting for app to be ready..."
+            sleep 5
+          done
+
       - name: Make a CURL request  
         run: |
           curl -X GET "http://localhost:8080"   
