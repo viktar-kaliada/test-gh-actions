@@ -44,7 +44,9 @@ jobs:
 
       - name: Install Trivy
         run: |
-          docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.57.0 --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed image myapp:${{ github.sha }}
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:0.57.0 image --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed myapp:${{ github.sha }}
 
       # - name: Install Trivy
       #   run: |
