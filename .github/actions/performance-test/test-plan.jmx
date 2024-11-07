@@ -1,0 +1,16 @@
+<testPlan>
+    <!-- Test Plan Configuration -->
+    <hashTree>
+        <threadGroup>
+            <!-- Thread Group Configuration -->
+            <hashTree>
+                <httpSampler>
+                    <stringProp name="HTTPSampler.domain">localhost</stringProp>
+                    <stringProp name="HTTPSampler.port">8080</stringProp>
+                    <stringProp name="HTTPSampler.path">/</stringProp>
+                    <stringProp name="HTTPSampler.method">GET</stringProp>
+                </httpSampler>
+            </hashTree>
+        </threadGroup>
+    </hashTree>
+</testPlan>
